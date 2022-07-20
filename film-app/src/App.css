@@ -1,0 +1,191 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.buttons {
+
+  display: flex ;
+  flex-direction : row;
+  height: 50px;
+}
+
+.navbar{
+
+  background-color: rgb(209, 39, 144) !important;
+  padding: 1rem 3rem;
+}
+
+.navbar-brand{
+
+  color: white !important;
+}
+
+.search {
+  width:100%;
+  display:flex;
+  justify-content: center;
+  background-color: #bdbdbd;
+  padding: 1rem;
+
+}
+
+.search-input{
+  height: 40px;
+  width: 300px;
+  border-radius: 5px;
+ outline: none;  /*  inputun etrafindaki siyah cizgiler artik yok.  */
+  border: none;  /*  inputun etrafindaki siyah cizgiler artik yok.  */
+}
+
+.movie-container{   
+/* burada ekrana yatay yazdirma planlamasini css ile yapmis olduk.  */
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movie{
+  background-color: rgb(209, 39, 144);
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.1) ;
+  overflow: hidden;   /* asagidan yandan sagdan soldan cikacak olan uzantilari engellemek icin bunu yaziyoruz. overfow:hidden */
+  margin: 1rem;
+  width: 300px;
+  position:relative;
+ 
+}
+
+
+.movie img{
+
+object-fit: cover;
+height:450px;
+max-width:100%;
+}
+
+.movie-info{
+
+  display:flex;
+  padding:1rem;
+  align-items: center;
+  justify-content: space-between
+
+}
+.movie-info h3{
+  margin:0;
+  color:white;
+}
+
+.movie-over{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  background-color: #fff;
+  color: purple;
+  overflow: auto;
+  max-height: 100%;
+  padding: 1rem;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+
+.movie:hover .movie-over{
+  transform: translateX(0%);
+ 
+}
+
+.tag{
+  border-radius:5px;
+  padding:0.7rem;
+  font-weight:bold;
+}
+
+.tag.green{
+
+  background-color: greenyellow;
+
+}
+.tag.orange{
+
+  background-color: orange;
+}
+
+.tag.red{
+
+  background-color: red;
+}
+
+.login{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.login-form{
+  flex: 1;
+  background-color: #eeeeee;
+  color: black;
+  padding: 5rem;
+}
+
+.form-title{
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.form-label{
+  padding-left: 1.5rem;
+  margin-bottom: 0px;
+  font-size: 1.5rem;
+}
+.form-control{
+  width: 90%;
+  margin: 20px;
+}
+.register {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.register-form {
+  flex: 1;
+  background-color: #eeeeee;
+  color: #000000;
+  padding: 5rem;
+}
