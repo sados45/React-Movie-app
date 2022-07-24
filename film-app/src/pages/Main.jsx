@@ -1,9 +1,10 @@
 import axios from "axios";
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState, useContext} from "react";
 import MovieCard from "../components/MovieCard";
-//import NotFound from "../components/NotFound";
-// import AuthContext from "../context/AuthContext";
+import NotFound from "../components/NotFound";
+import AuthContext from "../context/AuthContext";
  import Loading from "../components/Loading";
+ 
  
 const UNFILTERED = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}` //bu apiden aldigimiz keyi buraya yapistirdik. bundan sonraki islem ise film aratmayi search kismindan halledecegiz.
 //keyin görunmemesi icin: key i siliyoruz. ve yerine ${process.env.REACT_APP_API_KEY} yaziyoruz.  
@@ -18,30 +19,42 @@ export default function Main() {
     const [movies, setMovies] = useState([]);
     const [Loading, setLoading] = useState(false);
     const [notFound, setNotFound] = useState(false);
+    const {currentUser  }= useContext(AuthContext);
+    
+    
     const getMovies = (API) => {
         setLoading(true)
         axios.get(API)
         .then ((res) => {
           setMovies(res.data.results)
-          
-        setTimeout(() => {
           setLoading(false)
-        }, 1000)
+         
+
+        // setTimeout(() => {
+        //   setLoading(false)
+        // }, 1000)
         
-                if(res.data.results.length ==0){
-            setNotFound(true);
+        if(res.data.results.length ==0){
+        setNotFound(true);
         }
         
     })
         .catch((err) => console.log(err))// const getMovies bu sekilde yazmamizin sebebi dinamik bir sekilde yukarida verilen Api yi kullanabilmak icin. 
-        
+        setLoading(false)
     }
 
         const handleSubmit = (e) => { //search kismina star yazdik ve kelimeyi console da yakalayabiliyoruz. 
             e.preventDefault();
-            getMovies(FILTERED + searchTerm) // getMovies e istek atacak ve gelen sonucu result edecek. 
-            setSearchTerm('')
-        }
+            if (currentUser){
+             getMovies(FILTERED + searchTerm) // getMovies e istek atacak ve gelen sonucu result edecek. 
+            setSearchTerm('')   
+           
+            }else{
+
+                alert('Please log in to make a search ');
+            }
+            
+            }
 
         if (Loading) {
             content = <Loading />

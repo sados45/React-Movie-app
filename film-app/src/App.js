@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import './App.css'
 import Login from './pages/Login';
 import Register from './pages/Register';
-
+import { AuthContextProvider } from './context/AuthContext';
 
 export default function App() {
   return (
@@ -15,6 +15,7 @@ export default function App() {
       <React.Fragment>
         
         <Router>
+          <AuthContextProvider>
           <Navbar/> 
           {/* navbar route icinde degildi biz icine aldik böylece route icine alindi, digerlerinin icinde degil ama navbar bu sekilde her yerde calisir.  */}
           <Routes>
@@ -22,9 +23,9 @@ export default function App() {
             <Route path= '/login' element= {<Login/>}/>
             <Route path= '/register' element= {<Register/>}/>
           </Routes>
-        </Router>
-        < Main />
-      </React.Fragment>
+         </AuthContextProvider>
+        </Router> 
+       </React.Fragment>
     
     );
 }
